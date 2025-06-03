@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Billing | AlCapino</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="container">
+    <img src="{% static 'img/icon.jpg' %}" alt="Restaurant Logo">
+    <a class="brand" href="{% url 'home' %}">AlCapino</a>
+    <div class="collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'menu' %}">Menu</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'staff' %}">Staff</a></li>
+        <li class="nav-item"><a class="nav-link active" href="{% url 'order' %}">Orders</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main class="menu">
+  <section class="left">
+    <h1 style="text-align: center; margin-bottom: 30px;">Place Your Order</h1>
+
+    <div class="menu-container" style="justify-content: center;">
+      <form method="POST" class="menu-card" style="width: 500px; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        {% csrf_token %}
+        <div class="menu-item">
+          <label for="name"><strong>Name:</strong></label><br />
+          <input type="text" id="name" name="name" required style="width: 100%; padding: 10px; margin-top: 5px;">
+        </div>
+
+        <div class="menu-item">
+          <label for="phone"><strong>Phone:</strong></label><br />
+          <input type="text" id="phone" name="phone" required style="width: 100%; padding: 10px; margin-top: 5px;">
+        </div>
+
+        <div class="menu-item">
+          <label for="items"><strong>Order Items:</strong></label><br />
+          <textarea id="items" name="items" rows="4" required style="width: 100%; padding: 10px; margin-top: 5px;"></textarea>
+        </div>
+
+        <div class="menu-item">
+          <label for="address"><strong>Delivery Address:</strong></label><br />
+          <textarea id="address" name="address" rows="3" required style="width: 100%; padding: 10px; margin-top: 5px;"></textarea>
+        </div>
+
+        <div class="menu-item" style="text-align: center; margin-top: 20px;">
+          <button type="submit" style="padding: 10px 20px; background-color: #c62828; color: white; border: none; border-radius: 5px;">Submit Order</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2025 Al Capino. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

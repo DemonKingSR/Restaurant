@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Restaurant{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<!-- Navbar -->
+ <nav class="navbar">
+  
+  <div class="container">
+    
+    <img src="{% static 'img/icon.jpg' %}" alt="Restaurant Logo">
+    <a class="brand" href="{% url 'home' %}">AlCapino</a>
+    
+    <div class="collapse" id="navbarNav">
+      <ul class="navbar-nav ">
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'menu' %}">Menu</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'staff' %}">Staff</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'order' %}">Orders</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+ </nav>
+
+ <div class="carousel">
+    <ul class="slides">
+      <input type="radio" name="radio-buttons" id="img-1" checked />
+      <li class="slide-container">
+        <div class="slide-image">
+          <img src="{% static 'img/image4.jpg' %}" />
+        </div>
+        <div class="carousel-controls">
+          <label for="img-3" class="prev-slide"><span>&lsaquo;</span></label>
+          <label for="img-2" class="next-slide"><span>&rsaquo;</span></label>
+        </div>
+      </li>
+
+      <input type="radio" name="radio-buttons" id="img-2" />
+      <li class="slide-container">
+        <div class="slide-image">
+          <img src="{% static 'img/image1.jpg' %}" />
+        </div>
+        <div class="carousel-controls">
+          <label for="img-1" class="prev-slide"><span>&lsaquo;</span></label>
+          <label for="img-3" class="next-slide"><span>&rsaquo;</span></label>
+        </div>
+
+      </li>
+
+      <input type="radio" name="radio-buttons" id="img-3" />
+      <li class="slide-container">
+        <div class="slide-image">
+          <img src="{% static 'img/image3.jpg' %}" />
+        </div>
+        <div class="carousel-controls">
+          <label for="img-2" class="prev-slide"><span>&lsaquo;</span></label>
+          <label for="img-1" class="next-slide"><span>&rsaquo;</span></label>
+        </div>
+      </li>
+
+      <div class="carousel-dots">
+        <label for="img-1" class="carousel-dot" id="img-dot-1"></label>
+        <label for="img-2" class="carousel-dot" id="img-dot-2"></label>
+        <label for="img-3" class="carousel-dot" id="img-dot-3"></label>
+      </div>
+    </ul>
+
+    <div class="hero-text">
+      <h1>Welcome to Our Restaurant</h1>
+      <p>Experience the best dining experience with us</p>
+    </div>
+  </div>
+
+  <div class="Doc">
+
+  <div class="Left-side">
+    <h1>Welcome to MyRestaurant</h1>
+    <p>Your one-stop solution for delicious food and great service!</p>
+  </div>
+  <br>
+  <div class="Right-side">
+        <h1>About Us</h1>
+        <p>We are dedicated to providing the best dining experience with a wide variety of dishes and exceptional service.</p>
+  </div>
+ </div>
+  <div class="Doc">
+  <div class="Left-side">
+        <h1>Contact Us</h1>
+        <p>For inquiries, please reach out to us at </p>
+  </div>
+  <br>
+  <div class="Right-side">
+        <h1>Follow Us</h1>
+        <p>Stay updated with our latest offerings and events by following us on social media.</p>
+  </div>
+
+
+</body>
+</html>

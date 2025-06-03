@@ -1,0 +1,324 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Restaurant{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="container">
+    <img src="{% static 'img/icon.jpg' %}" alt="Restaurant Logo">
+    <a class="brand" href="{% url 'home' %}">AlCapino</a>
+    
+    <div class="collapse" id="navbarNav">
+      <ul class="navbar-nav ">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'menu' %}">Menu</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'staff' %}">Staff</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'order' %}">Orders</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="carousel">
+    <ul class="slides">
+      <input type="radio" name="radio-buttons" id="img-1" checked />
+      <li class="slide-container">
+        <div class="slide-image">
+          <img src="{% static 'img/image4.jpg' %}" />
+        </div>
+        <div class="carousel-controls">
+          <label for="img-3" class="prev-slide"><span>&lsaquo;</span></label>
+          <label for="img-2" class="next-slide"><span>&rsaquo;</span></label>
+        </div>
+      </li>
+
+      <input type="radio" name="radio-buttons" id="img-2" />
+      <li class="slide-container">
+        <div class="slide-image">
+          <img src="{% static 'img/image1.jpg' %}" />
+        </div>
+        <div class="carousel-controls">
+          <label for="img-1" class="prev-slide"><span>&lsaquo;</span></label>
+          <label for="img-3" class="next-slide"><span>&rsaquo;</span></label>
+        </div>
+
+      </li>
+
+      <input type="radio" name="radio-buttons" id="img-3" />
+      <li class="slide-container">
+        <div class="slide-image">
+          <img src="{% static 'img/image3.jpg' %}" />
+        </div>
+        <div class="carousel-controls">
+          <label for="img-2" class="prev-slide"><span>&lsaquo;</span></label>
+          <label for="img-1" class="next-slide"><span>&rsaquo;</span></label>
+        </div>
+      </li>
+
+      <div class="carousel-dots">
+        <label for="img-1" class="carousel-dot" id="img-dot-1"></label>
+        <label for="img-2" class="carousel-dot" id="img-dot-2"></label>
+        <label for="img-3" class="carousel-dot" id="img-dot-3"></label>
+      </div>
+    </ul>
+
+    <div class="hero-text">
+      <h1>Welcome to Our Restaurant</h1>
+      <p>Experience the best dining experience with us</p>
+    </div>
+  </div>
+
+<div class="menu">
+    <section class="left">
+        <main>
+    <h1 style="text-align: center;">Menu</h1>
+    <div class="menu-container">
+      <div class="menu-left">
+        <button onclick="showMenu('beverages')" class="active">Assorted Beverages</button>
+        <button onclick="showMenu('tandoor')">Jalwa-e-Tandoor</button>
+        <button onclick="showMenu('chinese')">Chatpata Chinese</button>
+        <button onclick="showMenu('desserts')">Desserts</button>
+        <button onclick="showMenu('snacks')">Snacks</button>
+        <button onclick="showMenu('salads')">Salads</button>
+        <button onclick="showMenu('soups')">Soups</button>
+        <button onclick="showMenu('main-course')">Main Course</button>
+        <button onclick="showMenu('sides')">Sides</button>
+        <button onclick="showMenu('breakfast')">Breakfast</button>
+        <button onclick="showMenu('specials')">Specials</button>
+        <button onclick="showMenu('daily-specials')">Daily Specials</button>
+      </div>
+
+      <div class="menu-right">
+        <div id="beverages" class="menu-section">
+        {% for item in beverages %}
+         <div class="menu-card">
+          {% if item.image %}
+          <img src="{{ item.image.url }}" alt="{{ item.name }}" class="menu-img">
+          {% endif %}
+          <div class="descrip">
+          <h3>{{ item.name }}</h3>
+         <p>{{ item.description }}</p>
+         <span>₹{{ item.price }}</span>
+        </div>
+           </div>
+       {% empty %}
+       <p>No beverages available right now.</p>
+       {% endfor %}
+ 
+    </div>
+
+    <div id="tandoor" class="menu-section">
+      {% for item in tandoor %}
+      <div class="menu-card">
+        {% if item.image %}
+        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="menu-img">
+        {% endif %}
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.description }}</p>
+        <span>₹{{ item.price }}</span>
+      </div>
+      {% empty %}
+      <p>No tandoor items available.</p>
+      {% endfor %}
+    </div>
+
+        <div id="chinese" class="menu-section">
+            {% for item in chinese %}
+      <div class="menu-card">
+        {% if item.image %}
+        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="menu-img">
+        {% endif %}
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.description }}</p>
+        <span>₹{{ item.price }}</span>
+      </div>
+      {% empty %}
+      <p>No chinese items available.</p>
+      {% endfor %}
+        </div>
+
+        <div id="desserts" class="menu-section">
+            {% for item in desserts %}
+      <div class="menu-card">
+        {% if item.image %}
+        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="menu-img">
+        {% endif %}
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.description }}</p>
+        <span>₹{{ item.price }}</span>
+      </div>
+      {% empty %}
+      <p>No desserts available.</p>
+      {% endfor %}
+        </div>
+
+        <div id="snacks" class="menu-section">
+            {% for item in snacks %}
+      <div class="menu-card">
+        {% if item.image %}
+        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="menu-img">
+        {% endif %}
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.description }}</p>
+        <span>₹{{ item.price }}</span>
+      </div>
+      {% empty %}
+      <p>No snacks available.</p>
+      {% endfor %}
+        </div> 
+
+          <div id="salads" class="menu-section">
+            {% for item in salads %}
+      <div class="menu-card">
+        {% if item.image %}
+        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="menu-img">
+        {% endif %}
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.description }}</p>
+        <span>₹{{ item.price }}</span>
+      </div>
+      {% empty %}
+      <p>No salad available.</p>
+      {% endfor %}
+        </div>
+
+          <div id="soups" class="menu-section">
+            {% for item in soups %}
+      <div class="menu-card">
+        {% if item.image %}
+        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="menu-img">
+        {% endif %}
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.description }}</p>
+        <span>₹{{ item.price }}</span>
+      </div>
+      {% empty %}
+      <p>No soups available.</p>
+      {% endfor %}
+        </div>
+
+        <div id="maincourse" class="menu-section">
+            {% for item in maincourse %}
+      <div class="menu-card">
+        {% if item.image %}
+        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="menu-img">
+        {% endif %}
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.description }}</p>
+        <span>₹{{ item.price }}</span>
+      </div>
+      {% empty %}
+      <p>No Main Course items available.</p>
+      {% endfor %}
+        </div>
+
+        <div id="sides" class="menu-section">
+            {% for item in sides %}
+      <div class="menu-card">
+        {% if item.image %}
+        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="menu-img">
+        {% endif %}
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.description }}</p>
+        <span>₹{{ item.price }}</span>
+      </div>
+      {% empty %}
+      <p>No sides available.</p>
+      {% endfor %}
+        </div>
+
+        <div id="breakfast" class="menu-section">
+            {% for item in breakfast %}
+      <div class="menu-card">
+        {% if item.image %}
+        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="menu-img">
+        {% endif %}
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.description }}</p>
+        <span>₹{{ item.price }}</span>
+      </div>
+      {% empty %}
+      <p>No breakfast items available.</p>
+      {% endfor %}
+        </div>
+
+        <div id="specials" class="menu-section">
+            {% for item in specials %}
+      <div class="menu-card">
+        {% if item.image %}
+        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="menu-img">
+        {% endif %}
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.description }}</p>
+        <span>₹{{ item.price }}</span>
+      </div>
+      {% empty %}
+      <p>No special items available.</p>
+      {% endfor %}
+        </div>
+
+        <div id="daily-specials" class="menu-section">
+          <div class="menu-item">
+            <p>Monday: 20% off on all pasta dishes</p>
+            <br>
+            <p>Tuesday: Buy one get one free on cocktails</p>
+            <br>
+            <p>Wednesday: Free dessert with any main course</p>
+            <br> 
+            <p>Thursday: 15% off on all vegetarian dishes</p>
+            <br>
+            <p>Friday: Happy Hour from 5 PM to 7 PM</p>
+            <br>
+            <p>Saturday: Live music night</p>
+            <br>
+            <p>Sunday: Family brunch special</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="scroll-container">
+      <img src="{% static 'img/icon2.jpg' %}" alt="Featured Dish">
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Al Capino. All rights reserved.</p>
+  </footer>
+  <script >
+  function showMenu(sectionId) {
+    const buttons = document.querySelectorAll('.menu-left button');
+      const sections = document.querySelectorAll('.menu-section');
+
+      buttons.forEach(btn => btn.classList.remove('active'));
+      sections.forEach(sec => sec.classList.remove('active'));
+
+      document.querySelector(`[onclick="showMenu('${sectionId}')"]`).classList.add('active');
+      document.getElementById(sectionId).classList.add('active');
+    }
+    </script>
+    </section>
+  </div>
+</body>
+
+</html>
+    
+
